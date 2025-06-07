@@ -1,5 +1,6 @@
 import hero_banner_img from "../../assets/hero-banner-image.jpeg";
 import wooden_pattern from "../../assets/wood_pattern_transparent.png";
+import CtaButton from "../common/CtaButton";
 
 const HeroBanner = () => {
   return (
@@ -26,14 +27,17 @@ const HeroBanner = () => {
             gravida, magna quam commodo elit, cursus gravida augue metus quis
             eros. Vivamus rhoncus lobortis mauris id varius.
           </h4>
+          <div className="py-4">
+            <CtaButton displayText="discover" />
+          </div>
         </div>
       </div>
       <div className="row">
         <div
-          className="col-lg-5 d-none d-lg-block d-xl-block "
+          className="col-lg-5 g-0 d-none d-lg-block d-xl-block "
           style={{ background: `url(${wooden_pattern})` }}
         ></div>
-        <div className="col-lg-7">
+        <div className="col-lg-7 g-0">
           <img src={hero_banner_img} />
         </div>
       </div>

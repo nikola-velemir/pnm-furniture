@@ -1,4 +1,5 @@
 import HeroBanner from "../components/Banners/HeroBanner";
+import CategorySlide from "../components/CategorySlide";
 import NavBar from "../components/Nav/NavBar";
 
 const HomePage = () => {
@@ -6,6 +7,7 @@ const HomePage = () => {
     <>
       <NavBar />
       <HeroBanner />
+      <CategorySlide />
     </>
   );
 };
