@@ -5,7 +5,7 @@ import CtaButton from "../common/CtaButton";
 const HeroBanner = () => {
   return (
     <div
-      className="container-fluid hero-banner"
+      className="container-fluid hero-banner pt-5 g-0"
       style={{ width: "100%", position: "relative" }}
     >
       <div className="hero-banner-overlay">
@@ -32,7 +32,7 @@ const HeroBanner = () => {
           </div>
         </div>
       </div>
-      <div className="row">
+      <div className="row g-0" style={{ width: "100%" }}>
         <div
           className="col-lg-5 g-0 d-none d-lg-block d-xl-block "
           style={{ background: `url(${wooden_pattern})` }}

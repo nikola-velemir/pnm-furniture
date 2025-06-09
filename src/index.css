@@ -8,7 +8,7 @@
   --secondary-color: #ba9e76;
   --text-color: #fff;
   background-color: black;
-  width: 100vw;
+  width: calc(100%-1rem);
 }
 * {
   letter-spacing: 1px;
@@ -16,9 +16,11 @@
 }
 .navbar {
   background-color: var(--secondary-color);
-  position: fixed;
+  position: fixed !important;
   padding: unset !important;
   z-index: 1000;
+  width: calc(100%);
+  margin: 0;
 }
 .navbar .navbar-nav {
   width: calc(50% - 10vw);
@@ -46,7 +48,7 @@
   position: relative;
   & > div {
     position: absolute;
-    background-color: #fff;
+    background-color: #fffae9;
     width: 100%;
     top: 0;
     left: 0;
@@ -67,6 +69,7 @@
   left: 0;
   right: 0;
   bottom: 0;
+  width: 100%;
   background-color: rgba(20, 20, 20, 0.4);
   color: var(--text-color);
   display: flex;
@@ -83,6 +86,7 @@
 }
 
 .hero-banner {
+  padding: unset !important;
   & .row {
     & img {
       width: 100%;
@@ -110,7 +114,7 @@
 
 .category-slide {
   position: relative;
-  width: 100vw;
+  width: 100%;
 }
 
 .category-slide .card-wrapper {

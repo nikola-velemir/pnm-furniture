@@ -1,12 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import CategoryCard from "./CategoryCard";
+const SCROLL_DEBOUNCE_MS = 300;
 
 const CategorySlide = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const firstCardRef = useRef<HTMLDivElement | null>(null);
 
   const [cardWidth, setCardWidth] = useState(0);
-
+  const scrollTimeoutRef = useRef<number | null>(null);
+  const isScrollingRef = useRef(false);
   useEffect(() => {
     const updateCardWidth = () => {
       if (firstCardRef.current) setCardWidth(firstCardRef.current.offsetWidth);
@@ -15,12 +17,24 @@ const CategorySlide = () => {
     window.addEventListener("resize", updateCardWidth);
     return () => window.removeEventListener("resize", updateCardWidth);
   }, []);
-
+  const debounceScroll = (callback: () => void) => {
+    if (isScrollingRef.current) return;
+    isScrollingRef.current = true;
+    callback();
+    scrollTimeoutRef.current = window.setTimeout(
+      () => (isScrollingRef.current = false),
+      SCROLL_DEBOUNCE_MS
+    );
+  };
   const scrollLeft = () => {
-    containerRef.current?.scrollBy({ left: -cardWidth, behavior: "smooth" });
+    debounceScroll(() =>
+      containerRef.current?.scrollBy({ left: -cardWidth, behavior: "smooth" })
+    );
   };
   const scrollRight = () => {
-    containerRef.current?.scrollBy({ left: cardWidth, behavior: "smooth" });
+    debounceScroll(() =>
+      containerRef.current?.scrollBy({ left: cardWidth, behavior: "smooth" })
+    );
   };
   return (
     <div className="category-slide">
