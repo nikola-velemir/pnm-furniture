@@ -1,8 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const CategoryCard = () => {
+interface CategoryCardProps {
+  index: number;
+  active: boolean;
+  emitActivate: (i: number) => void;
+}
+
+const CategoryCard = ({ index, active, emitActivate }: CategoryCardProps) => {
   const [isActive, setIsActive] = useState(false);
-  const handleCategorySelection = () => setIsActive(!isActive);
+  const handleCategorySelection = () => {
+    emitActivate(index);
+  };
+  useEffect(() => setIsActive(active), [active]);
   return (
     <div
       onClick={handleCategorySelection}

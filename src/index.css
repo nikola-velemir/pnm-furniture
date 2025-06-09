@@ -7,6 +7,8 @@
 :root {
   --secondary-color: #ba9e76;
   --text-color: #fff;
+  --primary-color: #fffae9;
+  --tertiary-color: #ece5d3;
   background-color: black;
   width: calc(100%-1rem);
 }
@@ -43,23 +45,34 @@
   justify-content: center;
 }
 .navbar .nav-banner {
-  width: 10vw;
+  width: 8vw;
   height: 5rem;
   position: relative;
   & > div {
     position: absolute;
-    background-color: #fffae9;
+    background-color: var(--primary-color);
     width: 100%;
     top: 0;
     left: 0;
-    height: 10vw;
+    height: 8vw;
     padding: 1rem;
     padding-top: 0.25rem;
-    padding-bottom: 2rem;
+    padding-bottom: 1.75rem;
     clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%);
+    transition: 0.3s ease;
     & > img {
       width: 100%;
       height: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    &.shrunk {
+      height: 5rem;
+      clip-path: none;
+      padding: 0.5rem;
+      & > img {
+        width: auto;
+      }
     }
   }
 }
@@ -96,7 +109,7 @@
 }
 .category-card {
   transition: 0.3s ease;
-  background-color: #ece5d3;
+  background-color: var(--tertiary-color);
   color: #272727;
   & svg {
     fill: none;
@@ -104,7 +117,7 @@
   }
 }
 .category-card.active {
-  background-color: #ba9e76;
+  background-color: var(--secondary-color);
   color: #fff;
   & svg {
     fill: none;
@@ -131,6 +144,11 @@
   -ms-overflow-style: none; /* IE and Edge */
   scroll-snap-type: x mandatory;
 }
+.btn {
+  background-color: var(--secondary-color) !important;
+  color: var(--text-color) !important;
+  border-radius: 0.25rem !important;
+}
 .category-slide-controls {
   width: 100%;
   height: 100%;
@@ -143,9 +161,29 @@
   & button {
     width: auto;
   }
+  & button {
+    background-color: var(--tertiary-color) !important;
+  }
   & button span {
     color: var(--secondary-color) !important;
     filter: brightness(0) saturate(100%) sepia(100%) hue-rotate(20deg)
       saturate(600%) brightness(90%);
+  }
+}
+.item-card {
+  background-color: var(--tertiary-color);
+  & .card-body {
+    background-color: var(--tertiary-color);
+  }
+  & .card-text.price {
+    font-size: 1.25rem;
+    color: var(--secondary-color);
+  }
+  .item-name {
+    font-family: "Poppins";
+  }
+  & .item-category {
+    color: #8d8d8d;
+    font-weight: 300;
   }
 }

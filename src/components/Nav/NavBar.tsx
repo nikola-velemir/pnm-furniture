@@ -1,6 +1,17 @@
+import { useEffect, useState } from "react";
 import logo from "../../assets/pnmlogo.png";
 
 const NavBar = () => {
+  const [isShrunk, setIsShrunk] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsShrunk(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <nav className={`navbar navbar-expand-lg`}>
       <div className="container-fluid">
@@ -34,7 +45,7 @@ const NavBar = () => {
             </li>
           </ul>
           <div className="nav-banner">
-            <div>
+            <div className={isShrunk ? "shrunk" : ""}>
               <img src={logo}></img>
             </div>
           </div>

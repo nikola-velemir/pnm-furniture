@@ -3,10 +3,13 @@ import CategoryCard from "./CategoryCard";
 const SCROLL_DEBOUNCE_MS = 300;
 
 const CategorySlide = () => {
+  const [cards, setCards] = useState(Array(10).fill(false));
+
   const containerRef = useRef<HTMLDivElement | null>(null);
   const firstCardRef = useRef<HTMLDivElement | null>(null);
 
   const [cardWidth, setCardWidth] = useState(0);
+
   const scrollTimeoutRef = useRef<number | null>(null);
   const isScrollingRef = useRef(false);
   useEffect(() => {
@@ -36,16 +39,24 @@ const CategorySlide = () => {
       containerRef.current?.scrollBy({ left: cardWidth, behavior: "smooth" })
     );
   };
+
+  const handleActiveChange = (index: number) =>
+    setCards(cards.map((_, i) => i === index));
+
   return (
     <div className="category-slide">
       <div className="d-flex card-container" ref={containerRef}>
-        {Array.from({ length: 10 }).map((_, i) => (
+        {cards.map((selected, i) => (
           <div
             className="card-wrapper col-lg-3 col-md-6 col-sm-6 col-xs-12"
             key={i}
             ref={i === 0 ? firstCardRef : null}
           >
-            <CategoryCard />
+            <CategoryCard
+              active={selected}
+              emitActivate={handleActiveChange}
+              index={i}
+            />
           </div>
         ))}
       </div>
